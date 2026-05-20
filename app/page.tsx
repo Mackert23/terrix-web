@@ -1,79 +1,140 @@
- export default function Home() {
+"use client";
+
+export default function Home() {
   return (
-    <main className="bg-black text-white min-h-screen overflow-hidden">
+    <main className="relative h-screen overflow-hidden bg-black text-white">
 
-      <section
-        className="relative h-screen bg-cover bg-center"
-        style={{
-          backgroundImage:"url('/images/mansion.jpg')"
-        }}
-      >
+      {/* Fondo mansión */}
+      <img
+        src="/mansion.jpg"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
 
-        <div className="absolute inset-0 bg-black/50"/>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#07162e]/20 via-transparent to-black/70" />
 
-        <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 px-8 py-4 flex justify-between items-center z-50">
+      {/* Navbar */}
+      <nav className="absolute top-5 left-1/2 -translate-x-1/2 z-50
+      w-[96%]
+      rounded-2xl
+      border border-white/10
+      bg-blue-950/30
+      backdrop-blur-xl
+      px-8 py-5">
+
+        <div className="flex items-center justify-between">
 
           <div className="flex items-center gap-4">
 
             <img
-              src="/images/logo.png"
-              alt="Terrix"
-              className="w-12 h-12 object-contain"
+              src="/logo.png"
+              className="w-12"
             />
 
-            <div className="font-bold text-3xl">
+            <span className="font-bold text-4xl">
               TERRIX
-            </div>
+            </span>
 
           </div>
 
-          <div className="hidden md:flex gap-10 tracking-[.3em] text-sm">
+          <div className="flex gap-14 tracking-[0.2em]">
 
-            <button>MENÚ</button>
-            <button>SOBRE NOSOTROS</button>
-            <button>CONTACTO</button>
+            <div>MENÚ</div>
+            <div>SOBRE NOSOTROS</div>
+            <div>CONTACTO</div>
 
           </div>
 
-          <button className="px-8 py-4 rounded-full bg-white text-black hover:scale-105 transition">
+          <button
+          className="
+          px-8
+          py-4
+          rounded-xl
+          bg-white/10
+          border
+          border-white/20
+          backdrop-blur
+          hover:scale-105
+          duration-500">
 
             COMPRA EXCLUSIVA ↗
 
           </button>
 
-        </nav>
+        </div>
 
-        <div className="absolute inset-0 flex items-center justify-center">
+      </nav>
 
-          <h1 className="text-[18vw] font-black opacity-20">
-            TERRIX
-          </h1>
+      {/* TERRIX gigante */}
+      <h1 className="
+      absolute
+      top-[10%]
+      left-1/2
+      -translate-x-1/2
+      text-[18vw]
+      font-black
+      opacity-30">
+
+        TERRIX
+
+      </h1>
+
+      {/* Card izquierda */}
+
+      <div className="
+      absolute
+      left-10
+      bottom-40
+      w-80
+      p-8
+      rounded-3xl
+      bg-black/20
+      backdrop-blur-xl">
+
+        <div className="text-cyan-300 text-sm">
+          ● PROPIEDAD TOKENIZADA
+        </div>
+
+        <h2 className="text-3xl mt-6">
+
+          NFT CERTIFICADO
+
+        </h2>
+
+        <p className="mt-4 text-white/70">
+
+Compra propiedades exclusivas con tecnología blockchain.
+
+        </p>
+
+      </div>
+
+      {/* Card derecha */}
+
+      <div className="
+      absolute
+      right-10
+      bottom-40
+      w-72
+      p-8
+      rounded-3xl
+      bg-black/20
+      backdrop-blur-xl">
+
+        <div className="text-cyan-300">
+
+COMPRA CON CRIPTO
 
         </div>
 
-        <div className="absolute bottom-20 left-10 max-w-md rounded-3xl backdrop-blur-xl bg-black/20 border border-white/10 p-8">
+        <div className="mt-6 space-y-4">
 
-          <div className="text-cyan-400 mb-3">
-            ● NFT CERTIFICADO
-          </div>
-
-          <h2 className="text-4xl font-bold">
-
-            WEB3 ESTATE
-
-          </h2>
-
-          <p className="text-white/70 mt-4 leading-8">
-
-            Compra propiedades premium mediante
-            USDT y ETH usando blockchain.
-
-          </p>
+          <div>USDT</div>
+          <div>ETH</div>
 
         </div>
 
-      </section>
+      </div>
 
     </main>
-  )
+  );
 }
