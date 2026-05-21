@@ -1,5 +1,7 @@
 "use client";
 
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 export default function TerrixLanding() {
   const goToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({
@@ -77,11 +79,7 @@ to-black
 
           </div>
 
-          <button className="px-4 md:px-8 py-3 md:py-4 text-xs md:text-base rounded-full border border-white/20 bg-gradient-to-r from-slate-700 to-neutral-600 hover:scale-105 transition-all shadow-2xl">
-
-            COMPRA EXCLUSIVA ↗
-
-          </button>
+          <ConnectButton />
 
         </nav>
 
