@@ -235,53 +235,6 @@ CONTACTO
 
       </section>
 
-      {/* GALERÍA WEB3 ESTATE */}
-
-<section className="bg-black py-40 relative overflow-hidden">
-
-  <h2 className="text-7xl font-black mb-20 text-center">
-    WEB3 ESTATE
-  </h2>
-
-  <div className="relative h-[800px]">
-
-    <img
-      src="/estate1.jpg"
-      className="absolute w-[300px] rotate-[-12deg] left-[5%] top-[0]
-      hover:scale-110 hover:rotate-0 transition-all duration-500
-      rounded-3xl shadow-2xl"
-    />
-
-    <img
-      src="/estate2.jpg"
-      className="absolute w-[360px] rotate-[8deg] right-[10%] top-[10%]
-      hover:scale-110 hover:rotate-0 transition-all duration-500
-      rounded-3xl shadow-2xl"
-    />
-
-    <img
-      src="/estate3.jpg"
-      className="absolute w-[280px] left-[30%] top-[40%]
-      hover:scale-110 transition-all duration-500
-      rounded-3xl shadow-2xl"
-    />
-
-    <div className="absolute left-[10%] top-[60%] text-6xl font-black opacity-10">
-      TOKENIZED
-    </div>
-
-    <div className="absolute right-[10%] top-[65%] text-5xl italic opacity-20">
-      EXCLUSIVE
-    </div>
-
-    <div className="absolute left-[45%] top-[15%] text-7xl font-black opacity-10">
-      TERRIX
-    </div>
-
-  </div>
-
-</section>
-
 
 
       {/* ABOUT */}
