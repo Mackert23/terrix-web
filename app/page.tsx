@@ -17,7 +17,14 @@ export default function TerrixLanding() {
           backgroundImage: "url('/fondo.jpg')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black" />
+        <div className="
+absolute
+inset-0
+bg-gradient-to-b
+from-[#00112d]/70
+via-black/20
+to-black
+"/>
 
         {/* partículas */}
         <div className="absolute inset-0 opacity-30">
@@ -79,16 +86,17 @@ CONTACTO
         {/* TERRIX GIGANTE */}
         <div className="absolute inset-0 flex justify-center top-20 pointer-events-none">
 
-          <h1 className="
-          text-[18vw]
-          font-black
-          opacity-20
-          text-white
-          bg-gradient-to-b
-          from-white
-          to-transparent
-          text-transparent
-          bg-clip-text">
+       <h1 className="
+text-[18vw]
+font-black
+opacity-10
+drop-shadow-[0_0_80px_rgba(255,255,255,0.3)]
+text-white
+bg-gradient-to-b
+from-white
+to-transparent
+text-transparent
+bg-clip-text">
 
             TERRIX
 
@@ -105,7 +113,7 @@ CONTACTO
         w-[320px]
         rounded-3xl
         backdrop-blur-xl
-        bg-black/20
+        bg-[#111]/30 shadow-[0_0_50px_rgba(0,255,255,0.08)]
         border
         border-white/10
         p-6">
@@ -136,7 +144,7 @@ CONTACTO
         w-[280px]
         rounded-3xl
         backdrop-blur-xl
-        bg-black/20
+        bg-[#111]/30 shadow-[0_0_50px_rgba(0,255,255,0.08)]
         border
         border-white/10
         p-6">
@@ -174,6 +182,41 @@ CONTACTO
           </div>
 
         </div>
+
+        {/* TEXTO CENTRAL */}
+
+<div className="
+absolute
+bottom-24
+left-1/2
+-translate-x-1/2
+text-center
+z-20">
+
+<div className="
+tracking-[1em]
+text-sm
+text-white/70">
+
+WEB3 LUXURY ESTATE
+
+</div>
+
+<div className="
+mt-10
+tracking-[0.5em]
+text-xs
+text-white/50">
+
+SCROLL DOWN
+
+</div>
+
+<div className="mt-4 text-3xl animate-bounce">
+↓
+</div>
+
+</div>
 
       </section>
 
