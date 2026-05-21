@@ -12,7 +12,7 @@ export default function TerrixLanding() {
 
       {/* HERO */}
       <section
-        className="relative h-screen bg-cover bg-center"
+        className="relative min-h-screen md:h-screen bg-cover bg-center"
         style={{
           backgroundImage: "url('/fondo.jpg')",
         }}
@@ -34,76 +34,79 @@ to-black
         </div>
 
         {/* NAVBAR */}
-        <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/30 border border-white/10 px-8 py-4 flex justify-between items-center">
+        <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/30 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <img
               src="/icono.png"
-              className="w-10"
+              className="w-8 md:w-10"
             />
 
-            <span className="font-bold text-3xl">
+            <span className="font-bold text-xl md:text-3xl">
               TERRIX
             </span>
           </div>
 
           <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
 
-<button>
-MENÚ
-</button>
+            <button>
+              MENÚ
+            </button>
 
-<button
-onClick={()=>
-document.getElementById("about")
-?.scrollIntoView({
-behavior:"smooth"
-})
-}
->
-SOBRE NOSOTROS
-</button>
+            <button
+            onClick={()=>
+            document.getElementById("about")
+            ?.scrollIntoView({
+            behavior:"smooth"
+            })
+            }
+            >
+            SOBRE NOSOTROS
+            </button>
 
-<button
-onClick={()=>
-document.getElementById("contact")
-?.scrollIntoView({
-behavior:"smooth"
-})
-}
->
-CONTACTO
-</button>
+            <button
+            onClick={()=>
+            document.getElementById("contact")
+            ?.scrollIntoView({
+            behavior:"smooth"
+            })
+            }
+            >
+            CONTACTO
+            </button>
 
-</div>
+          </div>
 
-          <button className="px-8 py-4 rounded-full border border-white/20 bg-gradient-to-r from-slate-700 to-neutral-600 hover:scale-105 transition-all shadow-2xl">
+          <button className="px-4 md:px-8 py-3 md:py-4 text-xs md:text-base rounded-full border border-white/20 bg-gradient-to-r from-slate-700 to-neutral-600 hover:scale-105 transition-all shadow-2xl">
+
             COMPRA EXCLUSIVA ↗
+
           </button>
 
         </nav>
 
         {/* TERRIX GIGANTE */}
-        <div className="absolute inset-0 flex justify-center top-20 pointer-events-none">
+        <div className="absolute inset-0 flex justify-center top-24 md:top-20 pointer-events-none">
 
-      <h1 className="
-text-[18vw]
-font-black
-opacity-40
-text-white
-bg-gradient-to-b
-from-white
-via-white
-to-slate-300
-text-transparent
-bg-clip-text
-drop-shadow-[0_0_50px_rgba(255,255,255,0.8)]
-tracking-tight
-select-none">
+          <h1 className="
+          text-[26vw]
+          md:text-[18vw]
+          font-black
+          opacity-40
+          text-white
+          bg-gradient-to-b
+          from-white
+          via-white
+          to-slate-300
+          text-transparent
+          bg-clip-text
+          drop-shadow-[0_0_50px_rgba(255,255,255,0.8)]
+          tracking-tight
+          select-none">
 
-TERRIX
+          TERRIX
 
-</h1>
+          </h1>
 
         </div>
 
@@ -111,12 +114,18 @@ TERRIX
 
         <div className="
         absolute
-        bottom-44
-        left-10
-        w-[320px]
+        bottom-10
+        md:bottom-44
+        left-1/2
+        md:left-10
+        -translate-x-1/2
+        md:translate-x-0
+        w-[90%]
+        md:w-[320px]
         rounded-3xl
         backdrop-blur-xl
-        bg-[#111]/30 shadow-[0_0_50px_rgba(0,255,255,0.08)]
+        bg-[#111]/30
+        shadow-[0_0_50px_rgba(0,255,255,0.08)]
         border
         border-white/10
         p-6">
@@ -141,13 +150,15 @@ TERRIX
         {/* CARD DERECHA */}
 
         <div className="
+        hidden md:block
         absolute
         bottom-44
         right-10
         w-[280px]
         rounded-3xl
         backdrop-blur-xl
-        bg-[#111]/30 shadow-[0_0_50px_rgba(0,255,255,0.08)]
+        bg-[#111]/30
+        shadow-[0_0_50px_rgba(0,255,255,0.08)]
         border
         border-white/10
         p-6">
@@ -188,64 +199,63 @@ TERRIX
 
         {/* TEXTO CENTRAL */}
 
-<div className="
-absolute
-bottom-24
-left-1/2
--translate-x-1/2
-text-center
-z-20">
+        <div className="
+        absolute
+        bottom-32
+        md:bottom-24
+        left-1/2
+        -translate-x-1/2
+        text-center
+        z-20">
 
-<div className="
-tracking-[1em]
-text-sm
-text-white/70">
+        <div className="
+        tracking-[0.6em]
+        text-[10px]
+        md:text-sm
+        text-white/70">
 
-WEB3 LUXURY ESTATE
+        WEB3 LUXURY ESTATE
 
-</div>
+        </div>
 
-<div className="
-mt-10
-tracking-[0.5em]
-text-xs
-text-white/50">
+        <div className="
+        mt-6
+        tracking-[0.3em]
+        text-[10px]
+        md:text-xs
+        text-white/50">
 
-SCROLL DOWN
+        SCROLL DOWN
 
-</div>
+        </div>
 
-<div className="mt-4 text-3xl animate-bounce">
-↓
-</div>
+        <div className="mt-4 text-2xl md:text-3xl animate-bounce">
+        ↓
+        </div>
 
-</div>
+        </div>
 
       </section>
-
-
 
       {/* ABOUT */}
 
       <section
       id="about"
-      className="py-32 px-12 bg-[#050505]">
+      className="py-32 px-8 md:px-12 bg-[#050505]">
 
         <div className="max-w-5xl">
 
           <div className="text-cyan-400 tracking-[.4em] mb-5">
-
             ABOUT
-
           </div>
 
-          <h2 className="text-6xl font-bold mb-8">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8">
 
             El futuro del patrimonio digital
 
           </h2>
 
-          <p className="text-white/60 text-xl leading-10">
+          <p className="text-white/60 text-lg md:text-xl leading-10">
 
             TERRIX conecta propiedades exclusivas con tecnología blockchain.
             Compra terrenos, mansiones y bienes raíces premium mediante activos digitales,
@@ -256,8 +266,6 @@ SCROLL DOWN
         </div>
 
       </section>
-
-
 
       {/* VIDEO */}
 
@@ -270,24 +278,18 @@ SCROLL DOWN
           className="w-full h-full object-cover opacity-40"
         >
           <source
-src="/mansion-video.mp4"
-type="video/mp4"
-/>
+          src="/mansion-video.mp4"
+          type="video/mp4"
+          />
         </video>
 
-        <div className="absolute inset-0 flex items-center justify-center">
-
-        </div>
-
       </section>
-
-
 
       {/* CONTACTO */}
 
       <section
       id="contact"
-      className="py-32 px-10">
+      className="py-32 px-8 md:px-10">
 
         <div className="max-w-4xl">
 
@@ -295,7 +297,7 @@ type="video/mp4"
             CONTACTO
           </div>
 
-          <h2 className="text-5xl font-bold mt-5">
+          <h2 className="text-3xl md:text-5xl font-bold mt-5">
             Habla con TERRIX
           </h2>
 
@@ -324,8 +326,6 @@ type="video/mp4"
         </div>
 
       </section>
-
-      
 
     </main>
   );
