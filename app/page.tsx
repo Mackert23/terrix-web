@@ -301,25 +301,39 @@ to-black
             Habla con TERRIX
           </h2>
 
-          <div className="mt-10 grid gap-5">
+          <form
+action="https://formspree.io/f/maqkoeed"
+method="POST"
+className="mt-10 grid gap-5"
+>
 
-            <input
-            placeholder="Nombre"
-            className="bg-[#111] p-5 rounded-xl"/>
+<input
+name="nombre"
+placeholder="Nombre"
+className="bg-[#111] p-5 rounded-xl"
+/>
 
-            <input
-            placeholder="Email"
-            className="bg-[#111] p-5 rounded-xl"/>
+<input
+name="email"
+type="email"
+placeholder="Email"
+className="bg-[#111] p-5 rounded-xl"
+/>
 
-            <textarea
-            placeholder="Mensaje"
-            className="bg-[#111] p-5 rounded-xl h-40"/>
+<textarea
+name="mensaje"
+placeholder="Mensaje"
+className="bg-[#111] p-5 rounded-xl h-40"
+/>
 
-            <button className="bg-cyan-500 text-black rounded-xl p-5 font-bold hover:scale-105 transition">
+<button
+type="submit"
+className="bg-cyan-500 text-black rounded-xl p-5 font-bold hover:scale-105 transition"
+>
+ENVIAR
+</button>
 
-              ENVIAR
-
-            </button>
+</form>
 
           </div>
 
