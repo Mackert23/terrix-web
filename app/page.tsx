@@ -1,81 +1,386 @@
-export default function TerrixPage() {
-  const scrollToSection = (id:string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+"use client";
+
+export default function TerrixLanding() {
+  const goToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
-    <div className="bg-black text-white min-h-screen overflow-x-hidden">
-      <section className="relative h-screen overflow-hidden">
-        <img
-          src="/mansion.jpg"
-          className="absolute inset-0 w-full h-full object-cover scale-105 animate-pulse"
-        />
+    <main className="bg-black text-white min-h-screen overflow-hidden font-sans">
 
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/60 via-black/30 to-black"></div>
+      {/* HERO */}
+      <section
+        className="relative h-screen bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/fondo.jpg')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black" />
 
-        <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] backdrop-blur-xl border border-white/10 rounded-2xl bg-black/20 p-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" className="w-12"/>
-            <span className="text-3xl font-bold">TERRIX</span>
+        {/* partículas */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-[20%] left-[10%] w-2 h-2 rounded-full bg-cyan-400 animate-ping"/>
+          <div className="absolute top-[50%] right-[20%] w-1 h-1 rounded-full bg-white animate-pulse"/>
+          <div className="absolute bottom-[30%] left-[60%] w-2 h-2 rounded-full bg-cyan-300 animate-pulse"/>
+        </div>
+
+        {/* NAVBAR */}
+        <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/30 border border-white/10 px-8 py-4 flex justify-between items-center">
+
+          <div className="flex items-center gap-4">
+            <img
+              src="/icono.png"
+              className="w-10"
+            />
+
+            <span className="font-bold text-3xl">
+              TERRIX
+            </span>
           </div>
 
-          <div className="flex gap-10 text-sm">
-            <button onClick={()=>scrollToSection('menu')} className="hover:text-cyan-400 transition">MENÚ</button>
-            <button onClick={()=>scrollToSection('about')} className="hover:text-cyan-400 transition">SOBRE NOSOTROS</button>
-            <button onClick={()=>scrollToSection('contact')} className="hover:text-cyan-400 transition">CONTACTO</button>
+          <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
+
+            <button
+            onClick={()=>window.scrollTo({
+              top:0,
+              behavior:"smooth"
+            })}
+            className="hover:text-cyan-300"
+            >
+              MENÚ
+            </button>
+
+            <button
+            onClick={()=>goToSection("about")}
+            className="hover:text-cyan-300"
+            >
+              SOBRE NOSOTROS
+            </button>
+
+            <button
+            onClick={()=>goToSection("contact")}
+            className="hover:text-cyan-300"
+            >
+              CONTACTO
+            </button>
+
           </div>
 
-          <button className="px-6 py-3 rounded-xl bg-white/10 hover:bg-cyan-500 transition">
-            COMPRA EXCLUSIVA
+          <button className="px-8 py-4 rounded-full border border-white/20 bg-gradient-to-r from-slate-700 to-neutral-600 hover:scale-105 transition-all shadow-2xl">
+            COMPRA EXCLUSIVA ↗
           </button>
+
         </nav>
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center">
-          <h1 className="text-[18vw] font-black opacity-20 tracking-tight animate-pulse">
+        {/* TERRIX GIGANTE */}
+        <div className="absolute inset-0 flex justify-center top-20 pointer-events-none">
+
+          <h1 className="
+          text-[18vw]
+          font-black
+          opacity-20
+          text-white
+          bg-gradient-to-b
+          from-white
+          to-transparent
+          text-transparent
+          bg-clip-text">
+
             TERRIX
+
           </h1>
 
-          <p className="tracking-[12px] mt-6 text-sm animate-bounce">
-            WEB3 LUXURY ESTATE
+        </div>
+
+        {/* CARD IZQ */}
+
+        <div className="
+        absolute
+        bottom-44
+        left-10
+        w-[320px]
+        rounded-3xl
+        backdrop-blur-xl
+        bg-black/20
+        border
+        border-white/10
+        p-6">
+
+          <div className="text-cyan-400 text-xs mb-4">
+            ● PROPIEDAD TOKENIZADA
+          </div>
+
+          <h3 className="text-3xl font-bold">
+            NFT CERTIFICADO
+          </h3>
+
+          <p className="text-white/70 mt-4 leading-8">
+
+            Compra propiedades exclusivas con blockchain y escritura digital.
+
           </p>
-        </div>
-      </section>
 
-      <section id="menu" className="min-h-screen p-20 bg-zinc-950">
-        <h2 className="text-5xl font-bold mb-8">Propiedades</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {[1,2,3].map((x)=>(
-            <div key={x} className="rounded-3xl overflow-hidden bg-white/5 hover:scale-105 transition duration-500">
-              <img src="/mansion.jpg" className="h-72 w-full object-cover"/>
-              <div className="p-6">
-                <h3 className="text-2xl">Mansión NFT #{x}</h3>
-                <p className="text-zinc-400">Propiedad tokenizada premium</p>
+        </div>
+
+
+        {/* CARD DERECHA */}
+
+        <div className="
+        absolute
+        bottom-44
+        right-10
+        w-[280px]
+        rounded-3xl
+        backdrop-blur-xl
+        bg-black/20
+        border
+        border-white/10
+        p-6">
+
+          <div className="text-cyan-400 text-xs">
+            ● COMPRA CON CRIPTO
+          </div>
+
+          <div className="space-y-4 mt-5">
+
+            <div>
+
+              <div className="text-2xl font-bold">
+                USDT
               </div>
+
+              <div className="text-white/60">
+                Polygon
+              </div>
+
             </div>
-          ))}
+
+            <div>
+
+              <div className="text-2xl font-bold">
+                ETH
+              </div>
+
+              <div className="text-white/60">
+                Ethereum
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
+
       </section>
 
-      <section id="about" className="min-h-screen p-20 bg-black text-center">
-        <h2 className="text-6xl font-bold mb-10">Sobre Nosotros</h2>
-        <p className="max-w-4xl mx-auto text-zinc-300 text-xl leading-9">
-          TERRIX combina real estate premium con blockchain y NFTs para crear una nueva forma de invertir.
-        </p>
-      </section>
 
-      <section id="contact" className="min-h-screen p-20 bg-zinc-950 text-center">
-        <h2 className="text-6xl font-bold mb-10">Contacto</h2>
+      {/* STATS */}
 
-        <div className="max-w-xl mx-auto bg-white/5 p-8 rounded-3xl">
-          <input placeholder="Nombre" className="w-full p-4 mb-4 bg-black rounded-xl"/>
-          <input placeholder="Email" className="w-full p-4 mb-4 bg-black rounded-xl"/>
-          <textarea placeholder="Mensaje" className="w-full p-4 h-40 bg-black rounded-xl"/>
+      <section className="px-10 py-20">
 
-          <button className="mt-6 px-10 py-4 rounded-xl bg-cyan-500 hover:scale-105 transition">
-            Enviar
-          </button>
+        <div className="grid md:grid-cols-4 gap-8 rounded-3xl bg-[#111] border border-white/10 p-10">
+
+          <div>
+            <div className="text-4xl font-bold">
+              +1250
+            </div>
+
+            <div className="text-white/50">
+              Propiedades
+            </div>
+          </div>
+
+          <div>
+
+            <div className="text-4xl font-bold">
+              42M
+            </div>
+
+            <div className="text-white/50">
+              USDT volumen
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <div className="text-4xl font-bold">
+              8.230
+            </div>
+
+            <div className="text-white/50">
+              NFTs
+            </div>
+
+          </div>
+
+          <div>
+
+            <div className="text-4xl font-bold">
+              On-Chain
+            </div>
+
+            <div className="text-white/50">
+              Seguridad
+            </div>
+
+          </div>
+
         </div>
+
       </section>
+
+      {/* GALERÍA WEB3 ESTATE */}
+
+<section className="bg-black py-40 relative overflow-hidden">
+
+  <h2 className="text-7xl font-black mb-20 text-center">
+    WEB3 ESTATE
+  </h2>
+
+  <div className="relative h-[800px]">
+
+    <img
+      src="/estate1.jpg"
+      className="absolute w-[300px] rotate-[-12deg] left-[5%] top-[0]
+      hover:scale-110 hover:rotate-0 transition-all duration-500
+      rounded-3xl shadow-2xl"
+    />
+
+    <img
+      src="/estate2.jpg"
+      className="absolute w-[360px] rotate-[8deg] right-[10%] top-[10%]
+      hover:scale-110 hover:rotate-0 transition-all duration-500
+      rounded-3xl shadow-2xl"
+    />
+
+    <img
+      src="/estate3.jpg"
+      className="absolute w-[280px] left-[30%] top-[40%]
+      hover:scale-110 transition-all duration-500
+      rounded-3xl shadow-2xl"
+    />
+
+    <div className="absolute left-[10%] top-[60%] text-6xl font-black opacity-10">
+      TOKENIZED
     </div>
-  )
+
+    <div className="absolute right-[10%] top-[65%] text-5xl italic opacity-20">
+      EXCLUSIVE
+    </div>
+
+    <div className="absolute left-[45%] top-[15%] text-7xl font-black opacity-10">
+      TERRIX
+    </div>
+
+  </div>
+
+</section>
+
+
+
+      {/* ABOUT */}
+
+      <section
+      id="about"
+      className="py-32 px-12 bg-[#050505]">
+
+        <div className="max-w-5xl">
+
+          <div className="text-cyan-400 tracking-[.4em] mb-5">
+
+            ABOUT
+
+          </div>
+
+          <h2 className="text-6xl font-bold mb-8">
+
+            El futuro del patrimonio digital
+
+          </h2>
+
+          <p className="text-white/60 text-xl leading-10">
+
+            TERRIX conecta propiedades exclusivas con tecnología blockchain.
+            Compra terrenos, mansiones y bienes raíces premium mediante activos digitales,
+            NFTs certificados y contratos inteligentes.
+
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      {/* VIDEO */}
+
+      <section className="relative h-screen">
+
+        <video
+          autoPlay
+          muted
+          loop
+          className="w-full h-full object-cover opacity-40"
+        >
+          <source
+          src="/mansion-video.mp4"
+          />
+        </video>
+
+        <div className="absolute inset-0 flex items-center justify-center">
+
+        </div>
+
+      </section>
+
+
+
+      {/* CONTACTO */}
+
+      <section
+      id="contact"
+      className="py-32 px-10">
+
+        <div className="max-w-4xl">
+
+          <div className="text-cyan-400 tracking-[.4em]">
+            CONTACTO
+          </div>
+
+          <h2 className="text-5xl font-bold mt-5">
+            Habla con TERRIX
+          </h2>
+
+          <div className="mt-10 grid gap-5">
+
+            <input
+            placeholder="Nombre"
+            className="bg-[#111] p-5 rounded-xl"/>
+
+            <input
+            placeholder="Email"
+            className="bg-[#111] p-5 rounded-xl"/>
+
+            <textarea
+            placeholder="Mensaje"
+            className="bg-[#111] p-5 rounded-xl h-40"/>
+
+            <button className="bg-cyan-500 text-black rounded-xl p-5 font-bold hover:scale-105 transition">
+
+              ENVIAR
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+  );
 }
