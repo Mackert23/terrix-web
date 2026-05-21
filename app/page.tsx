@@ -304,6 +304,7 @@ to-black
           <form
 action="https://formspree.io/f/maqkoeed"
 method="POST"
+
 className="mt-10 grid gap-5"
 >
 
@@ -335,9 +336,9 @@ ENVIAR
 
 </form>
 
+
           </div>
 
-        </div>
 
       </section>
 
