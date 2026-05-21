@@ -178,64 +178,6 @@ CONTACTO
       </section>
 
 
-      {/* STATS */}
-
-      <section className="px-10 py-20">
-
-        <div className="grid md:grid-cols-4 gap-8 rounded-3xl bg-[#111] border border-white/10 p-10">
-
-          <div>
-            <div className="text-4xl font-bold">
-              +1250
-            </div>
-
-            <div className="text-white/50">
-              Propiedades
-            </div>
-          </div>
-
-          <div>
-
-            <div className="text-4xl font-bold">
-              42M
-            </div>
-
-            <div className="text-white/50">
-              USDT volumen
-            </div>
-
-          </div>
-
-
-          <div>
-
-            <div className="text-4xl font-bold">
-              8.230
-            </div>
-
-            <div className="text-white/50">
-              NFTs
-            </div>
-
-          </div>
-
-          <div>
-
-            <div className="text-4xl font-bold">
-              On-Chain
-            </div>
-
-            <div className="text-white/50">
-              Seguridad
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
 
       {/* ABOUT */}
 
