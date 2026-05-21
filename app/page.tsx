@@ -86,21 +86,24 @@ CONTACTO
         {/* TERRIX GIGANTE */}
         <div className="absolute inset-0 flex justify-center top-20 pointer-events-none">
 
-       <h1 className="
+      <h1 className="
 text-[18vw]
 font-black
-opacity-10
-drop-shadow-[0_0_80px_rgba(255,255,255,0.3)]
+opacity-40
 text-white
 bg-gradient-to-b
 from-white
-to-transparent
+via-white
+to-slate-300
 text-transparent
-bg-clip-text">
+bg-clip-text
+drop-shadow-[0_0_50px_rgba(255,255,255,0.8)]
+tracking-tight
+select-none">
 
-            TERRIX
+TERRIX
 
-          </h1>
+</h1>
 
         </div>
 
