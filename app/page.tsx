@@ -1,13 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 export default function TerrixLanding() {
-  const goToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
+  const { address, isConnected } = useAccount();
 
   return (
     <main className="bg-black text-white min-h-screen overflow-hidden font-sans">
@@ -19,31 +17,13 @@ export default function TerrixLanding() {
           backgroundImage: "url('/fondo.jpg')",
         }}
       >
-        <div className="
-absolute
-inset-0
-bg-gradient-to-b
-from-[#00112d]/70
-via-black/20
-to-black
-"/>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00112d]/70 via-black/20 to-black" />
 
-        {/* partículas */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-[20%] left-[10%] w-2 h-2 rounded-full bg-cyan-400 animate-ping"/>
-          <div className="absolute top-[50%] right-[20%] w-1 h-1 rounded-full bg-white animate-pulse"/>
-          <div className="absolute bottom-[30%] left-[60%] w-2 h-2 rounded-full bg-cyan-300 animate-pulse"/>
-        </div>
-
-        {/* NAVBAR */}
+        {/* Navbar */}
         <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/30 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
 
           <div className="flex items-center gap-3">
-            <img
-              src="/icono.png"
-              className="w-8 md:w-10"
-            />
-
+            <img src="/icono.png" className="w-8 md:w-10"/>
             <span className="font-bold text-xl md:text-3xl">
               TERRIX
             </span>
@@ -51,30 +31,22 @@ to-black
 
           <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
 
-            <button>
-              MENÚ
+            <button
+              onClick={() =>
+                document.getElementById("about")
+                ?.scrollIntoView({behavior:"smooth"})
+              }
+            >
+              SOBRE
             </button>
 
             <button
-            onClick={()=>
-            document.getElementById("about")
-            ?.scrollIntoView({
-            behavior:"smooth"
-            })
-            }
+              onClick={() =>
+                document.getElementById("contact")
+                ?.scrollIntoView({behavior:"smooth"})
+              }
             >
-            SOBRE NOSOTROS
-            </button>
-
-            <button
-            onClick={()=>
-            document.getElementById("contact")
-            ?.scrollIntoView({
-            behavior:"smooth"
-            })
-            }
-            >
-            CONTACTO
+              CONTACTO
             </button>
 
           </div>
@@ -83,7 +55,7 @@ to-black
 
         </nav>
 
-        {/* TERRIX GIGANTE */}
+        {/* Título */}
         <div className="absolute inset-0 flex justify-center top-24 md:top-20 pointer-events-none">
 
           <h1 className="
@@ -91,149 +63,180 @@ to-black
           md:text-[18vw]
           font-black
           opacity-40
-          text-white
+          text-transparent
           bg-gradient-to-b
           from-white
           via-white
           to-slate-300
-          text-transparent
           bg-clip-text
-          drop-shadow-[0_0_50px_rgba(255,255,255,0.8)]
-          tracking-tight
-          select-none">
+          drop-shadow-[0_0_50px_rgba(255,255,255,0.8)]">
 
-          TERRIX
+            TERRIX
 
           </h1>
 
         </div>
 
-        {/* CARD IZQ */}
+      </section>
 
-        <div className="
-        absolute
-        bottom-10
-        md:bottom-44
-        left-1/2
-        md:left-10
-        -translate-x-1/2
-        md:translate-x-0
-        w-[90%]
-        md:w-[320px]
-        rounded-3xl
-        backdrop-blur-xl
-        bg-[#111]/30
-        shadow-[0_0_50px_rgba(0,255,255,0.08)]
-        border
-        border-white/10
-        p-6">
+      {/* NFT COLLECTION */}
 
-          <div className="text-cyan-400 text-xs mb-4">
-            ● PROPIEDAD TOKENIZADA
+      <section className="py-32 px-8 md:px-12 bg-black">
+
+        <div className="mb-16">
+
+          <div className="text-cyan-400 tracking-[.4em]">
+            NFT COLLECTION
           </div>
 
-          <h3 className="text-3xl font-bold">
-            NFT CERTIFICADO
-          </h3>
-
-          <p className="text-white/70 mt-4 leading-8">
-
-            Compra propiedades exclusivas con blockchain y escritura digital.
-
-          </p>
+          <h2 className="text-4xl md:text-6xl font-bold mt-4">
+            Propiedades Tokenizadas
+          </h2>
 
         </div>
 
+        <div className="grid md:grid-cols-3 gap-8">
 
-        {/* CARD DERECHA */}
+          {/* NFT 1 */}
 
-        <div className="
-        hidden md:block
-        absolute
-        bottom-44
-        right-10
-        w-[280px]
-        rounded-3xl
-        backdrop-blur-xl
-        bg-[#111]/30
-        shadow-[0_0_50px_rgba(0,255,255,0.08)]
-        border
-        border-white/10
-        p-6">
+          <div className="bg-[#111] rounded-3xl overflow-hidden border border-white/10 hover:scale-105 transition">
 
-          <div className="text-cyan-400 text-xs">
-            ● COMPRA CON CRIPTO
-          </div>
+            <img
+            src="/estate1.jpg"
+            className="h-[300px] w-full object-cover"
+            />
 
-          <div className="space-y-4 mt-5">
+            <div className="p-6">
 
-            <div>
-
-              <div className="text-2xl font-bold">
-                USDT
+              <div className="text-cyan-400">
+                NFT #001
               </div>
 
-              <div className="text-white/60">
-                Polygon
-              </div>
+              <h3 className="text-2xl font-bold mt-2">
+                Villa Dubai
+              </h3>
 
-            </div>
+              <p className="text-white/60 mt-2">
+                450.000 USDT
+              </p>
 
-            <div>
+              <Link href="/propiedad/villa-dubai">
 
-              <div className="text-2xl font-bold">
-                ETH
-              </div>
+                <button className="mt-6 bg-cyan-500 text-black px-6 py-3 rounded-xl font-bold">
 
-              <div className="text-white/60">
-                Ethereum
-              </div>
+                  VER PROPIEDAD
+
+                </button>
+
+              </Link>
 
             </div>
 
           </div>
 
-        </div>
+          {/* NFT 2 */}
 
-        {/* TEXTO CENTRAL */}
+          <div className="bg-[#111] rounded-3xl overflow-hidden border border-white/10 hover:scale-105 transition">
 
-        <div className="
-        absolute
-        bottom-32
-        md:bottom-24
-        left-1/2
-        -translate-x-1/2
-        text-center
-        z-20">
+            <img
+            src="/estate2.jpg"
+            className="h-[300px] w-full object-cover"
+            />
 
-        <div className="
-        tracking-[0.6em]
-        text-[10px]
-        md:text-sm
-        text-white/70">
+            <div className="p-6">
 
-        WEB3 LUXURY ESTATE
+              <div className="text-cyan-400">
+                NFT #002
+              </div>
 
-        </div>
+              <h3 className="text-2xl font-bold mt-2">
+                Miami Mansion
+              </h3>
 
-        <div className="
-        mt-6
-        tracking-[0.3em]
-        text-[10px]
-        md:text-xs
-        text-white/50">
+              <p className="text-white/60 mt-2">
+                820.000 USDT
+              </p>
 
-        SCROLL DOWN
+              <Link href="/propiedad/miami-mansion">
 
-        </div>
+                <button className="mt-6 bg-cyan-500 text-black px-6 py-3 rounded-xl font-bold">
 
-        <div className="mt-4 text-2xl md:text-3xl animate-bounce">
-        ↓
-        </div>
+                  VER PROPIEDAD
+
+                </button>
+
+              </Link>
+
+            </div>
+
+          </div>
+
+          {/* NFT 3 */}
+
+          <div className="bg-[#111] rounded-3xl overflow-hidden border border-white/10 hover:scale-105 transition">
+
+            <img
+            src="/estate3.jpg"
+            className="h-[300px] w-full object-cover"
+            />
+
+            <div className="p-6">
+
+              <div className="text-cyan-400">
+                NFT #003
+              </div>
+
+              <h3 className="text-2xl font-bold mt-2">
+                Penthouse BA
+              </h3>
+
+              <p className="text-white/60 mt-2">
+                210.000 USDT
+              </p>
+
+              <Link href="/propiedad/penthouse-ba">
+
+                <button className="mt-6 bg-cyan-500 text-black px-6 py-3 rounded-xl font-bold">
+
+                  VER PROPIEDAD
+
+                </button>
+
+              </Link>
+
+            </div>
+
+          </div>
 
         </div>
 
       </section>
+
+      {/* Wallet */}
+
+      {isConnected && (
+
+      <section className="py-10 px-8 md:px-12">
+
+        <div className="bg-[#111] border border-cyan-500/30 rounded-3xl p-6">
+
+          <div className="text-cyan-400">
+            WALLET CONECTADA
+          </div>
+
+          <h3 className="text-2xl font-bold mt-4">
+            Bienvenido a TERRIX
+          </h3>
+
+          <div className="mt-4 text-white/60 break-all">
+            {address}
+          </div>
+
+        </div>
+
+      </section>
+
+      )}
 
       {/* ABOUT */}
 
@@ -241,45 +244,17 @@ to-black
       id="about"
       className="py-32 px-8 md:px-12 bg-[#050505]">
 
-        <div className="max-w-5xl">
+        <h2 className="text-4xl md:text-6xl font-bold">
 
-          <div className="text-cyan-400 tracking-[.4em] mb-5">
-            ABOUT
-          </div>
+          El futuro del patrimonio digital
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-8">
+        </h2>
 
-            El futuro del patrimonio digital
+        <p className="text-white/60 text-lg mt-8 max-w-3xl">
 
-          </h2>
+          TERRIX conecta propiedades exclusivas con blockchain y NFTs.
 
-          <p className="text-white/60 text-lg md:text-xl leading-10">
-
-            TERRIX conecta propiedades exclusivas con tecnología blockchain.
-            Compra terrenos, mansiones y bienes raíces premium mediante activos digitales,
-            NFTs certificados y contratos inteligentes.
-
-          </p>
-
-        </div>
-
-      </section>
-
-      {/* VIDEO */}
-
-      <section className="relative h-screen">
-
-        <video
-          autoPlay
-          muted
-          loop
-          className="w-full h-full object-cover opacity-40"
-        >
-          <source
-          src="/mansion-video.mp4"
-          type="video/mp4"
-          />
-        </video>
+        </p>
 
       </section>
 
@@ -289,54 +264,43 @@ to-black
       id="contact"
       className="py-32 px-8 md:px-10">
 
-        <div className="max-w-4xl">
+        <h2 className="text-3xl md:text-5xl font-bold">
+          Habla con TERRIX
+        </h2>
 
-          <div className="text-cyan-400 tracking-[.4em]">
-            CONTACTO
-          </div>
+        <form
+        action="https://formspree.io/f/maqkoeed"
+        method="POST"
+        className="mt-10 grid gap-5">
 
-          <h2 className="text-3xl md:text-5xl font-bold mt-5">
-            Habla con TERRIX
-          </h2>
+          <input
+          name="nombre"
+          placeholder="Nombre"
+          className="bg-[#111] p-5 rounded-xl"
+          />
 
-          <form
-action="https://formspree.io/f/maqkoeed"
-method="POST"
+          <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          className="bg-[#111] p-5 rounded-xl"
+          />
 
-className="mt-10 grid gap-5"
->
+          <textarea
+          name="mensaje"
+          placeholder="Mensaje"
+          className="bg-[#111] p-5 rounded-xl h-40"
+          />
 
-<input
-name="nombre"
-placeholder="Nombre"
-className="bg-[#111] p-5 rounded-xl"
-/>
+          <button
+          type="submit"
+          className="bg-cyan-500 text-black rounded-xl p-5 font-bold">
 
-<input
-name="email"
-type="email"
-placeholder="Email"
-className="bg-[#111] p-5 rounded-xl"
-/>
+            ENVIAR
 
-<textarea
-name="mensaje"
-placeholder="Mensaje"
-className="bg-[#111] p-5 rounded-xl h-40"
-/>
+          </button>
 
-<button
-type="submit"
-className="bg-cyan-500 text-black rounded-xl p-5 font-bold hover:scale-105 transition"
->
-ENVIAR
-</button>
-
-</form>
-
-
-          </div>
-
+        </form>
 
       </section>
 

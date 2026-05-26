@@ -4,26 +4,32 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import {
   getDefaultConfig,
-  RainbowKitProvider,
+  RainbowKitProvider
 } from "@rainbow-me/rainbowkit";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  WagmiProvider
+} from "wagmi";
 
-import { WagmiProvider } from "wagmi";
-import { mainnet, polygon } from "wagmi/chains";
+import {
+  QueryClientProvider,
+  QueryClient
+} from "@tanstack/react-query";
+
+import { mainnet } from "wagmi/chains";
 
 const config = getDefaultConfig({
   appName: "Terrix",
-  projectId: "terrix123",
-  chains: [mainnet, polygon],
+  projectId: "2ee69484cc7837db7a26303d1a873c8c",
+  chains: [mainnet],
 });
 
 const queryClient = new QueryClient();
 
 export default function Providers({
   children,
-}: {
-  children: React.ReactNode;
+}:{
+  children: React.ReactNode
 }) {
   return (
     <WagmiProvider config={config}>
