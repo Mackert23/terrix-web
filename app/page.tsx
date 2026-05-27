@@ -11,73 +11,289 @@ export default function TerrixLanding() {
     <main className="bg-black text-white min-h-screen overflow-hidden font-sans">
 
       {/* HERO */}
-      <section
-        className="relative min-h-screen md:h-screen bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/fondo.jpg')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00112d]/70 via-black/20 to-black" />
+<section
+  className="relative min-h-screen md:h-screen bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/fondo.jpg')",
+  }}
+>
 
-        {/* Navbar */}
-        <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/30 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
+{/* Overlay más suave para recuperar brillo */}
+<div className="absolute inset-0 bg-gradient-to-b from-[#00112d]/40 via-black/10 to-black" />
 
-          <div className="flex items-center gap-3">
-            <img src="/icono.png" className="w-8 md:w-10"/>
-            <span className="font-bold text-xl md:text-3xl">
-              TERRIX
-            </span>
-          </div>
+{/* Partículas */}
+<div className="absolute inset-0 opacity-40">
 
-          <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
+<div className="absolute top-[20%] left-[10%] w-2 h-2 rounded-full bg-cyan-400 animate-ping"/>
 
-            <button
-              onClick={() =>
-                document.getElementById("about")
-                ?.scrollIntoView({behavior:"smooth"})
-              }
-            >
-              SOBRE
-            </button>
+<div className="absolute top-[50%] right-[20%] w-1 h-1 rounded-full bg-white animate-pulse"/>
 
-            <button
-              onClick={() =>
-                document.getElementById("contact")
-                ?.scrollIntoView({behavior:"smooth"})
-              }
-            >
-              CONTACTO
-            </button>
+<div className="absolute bottom-[30%] left-[60%] w-2 h-2 rounded-full bg-cyan-300 animate-pulse"/>
 
-          </div>
+</div>
 
-          <ConnectButton />
+{/* Navbar */}
 
-        </nav>
+<nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/20 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
 
-        {/* Título */}
-        <div className="absolute inset-0 flex justify-center top-24 md:top-20 pointer-events-none">
+<div className="flex items-center gap-3">
 
-          <h1 className="
-          text-[26vw]
-          md:text-[18vw]
-          font-black
-          opacity-40
-          text-transparent
-          bg-gradient-to-b
-          from-white
-          via-white
-          to-slate-300
-          bg-clip-text
-          drop-shadow-[0_0_50px_rgba(255,255,255,0.8)]">
+<img
+src="/icono.png"
+className="w-8 md:w-10"
+/>
 
-            TERRIX
+<span className="font-bold text-xl md:text-3xl">
+TERRIX
+</span>
 
-          </h1>
+</div>
 
-        </div>
+<div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
 
-      </section>
+<button>
+MENÚ
+</button>
+
+<button
+onClick={()=>
+document.getElementById("about")
+?.scrollIntoView({
+behavior:"smooth"
+})
+}
+>
+SOBRE NOSOTROS
+</button>
+
+<button
+onClick={()=>
+document.getElementById("contact")
+?.scrollIntoView({
+behavior:"smooth"
+})
+}
+>
+CONTACTO
+</button>
+
+</div>
+
+<ConnectButton/>
+
+</nav>
+
+{/* TERRIX gigante con MUCHO más brillo */}
+
+<div className="absolute inset-0 flex justify-center top-20 pointer-events-none">
+
+<h1
+className="
+text-[26vw]
+md:text-[18vw]
+font-black
+opacity-60
+text-transparent
+bg-gradient-to-b
+from-white
+via-white
+to-slate-200
+bg-clip-text
+drop-shadow-[0_0_80px_rgba(255,255,255,1)]
+tracking-tight
+"
+>
+
+TERRIX
+
+</h1>
+
+</div>
+
+
+{/* CARD IZQUIERDA */}
+
+<div className="
+absolute
+bottom-10
+md:bottom-44
+left-1/2
+md:left-10
+-translate-x-1/2
+md:translate-x-0
+w-[90%]
+md:w-[320px]
+rounded-3xl
+backdrop-blur-xl
+bg-[#111]/25
+border
+border-white/10
+p-6
+shadow-[0_0_60px_rgba(0,255,255,0.15)]
+">
+
+<div className="text-cyan-400 text-xs mb-4">
+
+● PROPIEDAD TOKENIZADA
+
+</div>
+
+<div className="flex gap-4">
+
+<img
+src="/nft.png"
+className="w-20 h-20 object-contain"
+/>
+
+<div>
+
+<h3 className="text-3xl font-bold">
+NFT CERTIFICADO
+</h3>
+
+<p className="text-white/70 mt-2 text-sm leading-7">
+
+Compra propiedades exclusivas
+con tecnología blockchain.
+
+</p>
+
+</div>
+
+</div>
+
+<div className="mt-6 border-t border-white/10 pt-4 text-white/80">
+
+✓ VERIFICACIÓN EN CADENA
+
+</div>
+
+</div>
+
+
+
+{/* CARD DERECHA */}
+
+<div className="
+hidden md:block
+absolute
+bottom-44
+right-10
+w-[300px]
+rounded-3xl
+backdrop-blur-xl
+bg-[#111]/25
+border
+border-white/10
+p-6
+shadow-[0_0_60px_rgba(0,255,255,0.15)]
+">
+
+<div className="text-cyan-400 text-xs">
+
+● COMPRA CON CRIPTO
+
+</div>
+
+
+<div className="space-y-6 mt-5">
+
+<div className="flex items-center gap-4">
+
+<img
+src="/usdt.png"
+className="w-12 h-12"
+/>
+
+<div>
+
+<div className="text-2xl font-bold">
+USDT
+</div>
+
+<div className="text-white/60">
+Tether Polygon
+</div>
+
+</div>
+
+</div>
+
+
+<div className="flex items-center gap-4">
+
+<img
+src="/eth.png"
+className="w-12 h-12"
+/>
+
+<div>
+
+<div className="text-2xl font-bold">
+ETH
+</div>
+
+<div className="text-white/60">
+Ethereum
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div className="mt-8 border-t border-white/10 pt-4">
+
+PAGOS 100% SEGUROS 🔒
+
+</div>
+
+</div>
+
+
+
+{/* TEXTO CENTRAL */}
+
+<div className="
+absolute
+bottom-32
+md:bottom-24
+left-1/2
+-translate-x-1/2
+text-center
+z-20">
+
+<div className="
+tracking-[0.6em]
+text-[10px]
+md:text-sm
+text-white/90">
+
+WEB3 LUXURY ESTATE
+
+</div>
+
+<div className="
+mt-6
+tracking-[0.3em]
+text-[10px]
+md:text-xs
+text-white/60">
+
+SCROLL DOWN
+
+</div>
+
+<div className="mt-4 text-2xl animate-bounce">
+
+↓
+
+</div>
+
+</div>
+
+</section>
 
       {/* NFT COLLECTION */}
 
