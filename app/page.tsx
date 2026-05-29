@@ -1,11 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 
 export default function TerrixLanding() {
   const { address, isConnected } = useAccount();
+
+const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+}, []);
 
   return (
     <main className="bg-black text-white min-h-screen overflow-hidden font-sans">
@@ -430,29 +437,29 @@ SCROLL DOWN
 
       {/* Wallet */}
 
-      {isConnected && (
+{mounted && isConnected && (
 
-      <section className="py-10 px-8 md:px-12">
+<section className="py-10 px-8 md:px-12">
 
-        <div className="bg-[#111] border border-cyan-500/30 rounded-3xl p-6">
+  <div className="bg-[#111] border border-cyan-500/30 rounded-3xl p-6">
 
-          <div className="text-cyan-400">
-            WALLET CONECTADA
-          </div>
+    <div className="text-cyan-400">
+      WALLET CONECTADA
+    </div>
 
-          <h3 className="text-2xl font-bold mt-4">
-            Bienvenido a TERRIX
-          </h3>
+    <h3 className="text-2xl font-bold mt-4">
+      Bienvenido a TERRIX
+    </h3>
 
-          <div className="mt-4 text-white/60 break-all">
-            {address}
-          </div>
+    <div className="mt-4 text-white/60 break-all">
+      {address}
+    </div>
 
-        </div>
+  </div>
 
-      </section>
+</section>
 
-      )}
+)}
 
       {/* ABOUT */}
 
@@ -466,11 +473,89 @@ SCROLL DOWN
 
         </h2>
 
-        <p className="text-white/60 text-lg mt-8 max-w-3xl">
+       <div className="mt-10 grid md:grid-cols-2 gap-10 max-w-6xl">
 
-          TERRIX conecta propiedades exclusivas con blockchain y NFTs.
+  {/* Texto principal */}
 
-        </p>
+  <div>
+
+    <p className="text-white/70 text-lg leading-9">
+
+      TERRIX transforma propiedades reales en activos digitales exclusivos.
+      Cada terreno, casa o desarrollo inmobiliario es representado mediante
+      un NFT certificado en blockchain, permitiendo verificar autenticidad,
+      transparencia y trazabilidad en tiempo real.
+
+    </p>
+
+    <p className="text-white/50 text-lg leading-9 mt-8">
+
+      Nuestro sistema conecta el mercado inmobiliario tradicional con tecnología Web3,
+      ofreciendo una nueva forma de comprar, reservar y comercializar propiedades
+      utilizando criptomonedas y contratos inteligentes.
+
+    </p>
+
+  </div>
+
+  {/* Cards laterales */}
+
+  <div className="grid gap-6">
+
+    <div className="bg-[#111]/70 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+
+      <div className="text-cyan-400 tracking-[.25em] text-sm">
+        01 · TOKENIZACIÓN
+      </div>
+
+      <h3 className="text-2xl font-bold mt-3">
+        Propiedades convertidas en NFTs
+      </h3>
+
+      <p className="text-white/60 mt-4 leading-8">
+        Cada propiedad posee un NFT único con metadata, imágenes,
+        documentación y validación digital.
+      </p>
+
+    </div>
+
+    <div className="bg-[#111]/70 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+
+      <div className="text-cyan-400 tracking-[.25em] text-sm">
+        02 · BLOCKCHAIN
+      </div>
+
+      <h3 className="text-2xl font-bold mt-3">
+        Transparencia y seguridad
+      </h3>
+
+      <p className="text-white/60 mt-4 leading-8">
+        Todas las operaciones quedan registradas on-chain,
+        ofreciendo seguridad, trazabilidad y verificación pública.
+      </p>
+
+    </div>
+
+    <div className="bg-[#111]/70 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+
+      <div className="text-cyan-400 tracking-[.25em] text-sm">
+        03 · WEB3 ESTATE
+      </div>
+
+      <h3 className="text-2xl font-bold mt-3">
+        Compra con criptomonedas
+      </h3>
+
+      <p className="text-white/60 mt-4 leading-8">
+        Los usuarios pueden reservar propiedades premium utilizando
+        USDT, ETH y otros activos digitales compatibles.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
 
       </section>
 
