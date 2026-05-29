@@ -271,24 +271,55 @@ left-1/2
 text-center
 z-20">
 
-<div className="
+<div
+className="
 tracking-[0.6em]
 text-[10px]
 md:text-sm
-text-white/90">
+text-white/90"
+>
 
 WEB3 LUXURY ESTATE
 
 </div>
 
-<div className="
-mt-6
-tracking-[0.3em]
-text-[10px]
-md:text-xs
-text-white/60">
+<div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-20 mt-16">
 
-SCROLL DOWN
+  <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl px-8 py-6 text-center w-full md:w-auto">
+
+    <div className="text-cyan-400 text-sm tracking-[.3em]">
+      WEB3
+    </div>
+
+    <h3 className="text-2xl md:text-3xl font-bold mt-3">
+      LUXURY ESTATE
+    </h3>
+
+  </div>
+
+  <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl px-8 py-6 text-center w-full md:w-auto">
+
+    <div className="text-cyan-400 text-sm tracking-[.3em]">
+      NFT
+    </div>
+
+    <h3 className="text-2xl md:text-3xl font-bold mt-3">
+      CERTIFICADO
+    </h3>
+
+  </div>
+
+  <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl px-8 py-6 text-center w-full md:w-auto">
+
+    <div className="text-cyan-400 text-sm tracking-[.3em]">
+      CRYPTO
+    </div>
+
+    <h3 className="text-2xl md:text-3xl font-bold mt-3">
+      USDT + ETH
+    </h3>
+
+  </div>
 
 </div>
 
