@@ -6,36 +6,61 @@ import { useAccount } from "wagmi";
 import { supabase } from "@/lib/supabase";
 
 export default function AdminPage() {
-const router = useRouter();
 
-const { address, isConnected } = useAccount();
+  const router = useRouter();
 
-const ADMIN_WALLET =
-"0x57984fCdB19d66174FcDE3F39F6fa3Da18e8118E";
+  const { address, isConnected } = useAccount();
 
-useEffect(() => {
+  const ADMIN_WALLET =
+    "0x57984fCdB19d66174FcDE3F39F6fa3Da18e8118E";
 
-  if (!isConnected) {
-    router.push("/");
-    return;
-  }
+  useEffect(() => {
 
-  if (
-    address?.toLowerCase() !==
-    ADMIN_WALLET.toLowerCase()
-  ) {
-    router.push("/");
-  }
+    if (!isConnected) {
+      router.push("/");
+      return;
+    }
 
-}, [address, isConnected, router]);
+    if (
+      address?.toLowerCase() !==
+      ADMIN_WALLET.toLowerCase()
+    ) {
+      router.push("/");
+    }
 
+  }, [address, isConnected, router]);
 
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
-  const [imagen, setImagen] = useState("");
   const [descripcion, setDescripcion] = useState("");
 
+  const [archivo, setArchivo] = useState<File | null>(null);
+
   async function crearPropiedad() {
+
+    if (!archivo) {
+      alert("Subí una imagen");
+      return;
+    }
+
+    const nombreArchivo =
+      `${Date.now()}-${archivo.name}`;
+
+    const { error: uploadError } =
+      await supabase.storage
+        .from("propiedades")
+        .upload(nombreArchivo, archivo);
+
+    if (uploadError) {
+      alert("Error subiendo imagen");
+      console.log(uploadError);
+      return;
+    }
+
+    const imagen = supabase.storage
+      .from("propiedades")
+      .getPublicUrl(nombreArchivo)
+      .data.publicUrl;
 
     const { error } = await supabase
       .from("propiedades")
@@ -58,8 +83,9 @@ useEffect(() => {
 
     setNombre("");
     setPrecio("");
-    setImagen("");
     setDescripcion("");
+    setArchivo(null);
+
   }
 
   return (
@@ -86,9 +112,14 @@ useEffect(() => {
         />
 
         <input
-          placeholder="Imagen URL"
-          value={imagen}
-          onChange={(e) => setImagen(e.target.value)}
+          type="file"
+          onChange={(e) => {
+
+            if (!e.target.files) return;
+
+            setArchivo(e.target.files[0]);
+
+          }}
           className="bg-[#111] p-5 rounded-xl"
         />
 
