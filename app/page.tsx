@@ -91,7 +91,7 @@ export default function TerrixLanding() {
         </div>
 
         {/* CARD IZQUIERDA */}
-        <div className="absolute bottom-10 md:bottom-44 left-1/2 md:left-10 -translate-x-1/2 md:translate-x-0 w-[90%] md:w-[320px] rounded-3xl backdrop-blur-xl bg-[#111]/25 border border-white/10 p-6 shadow-[0_0_60px_rgba(0,255,255,0.15)]">
+        <div className="absolute bottom-44 md:bottom-44 left-1/2 md:left-10 -translate-x-1/2 md:translate-x-0 w-[90%] md:w-[320px] rounded-3xl backdrop-blur-xl bg-[#111]/25 border border-white/10 p-6 shadow-[0_0_60px_rgba(0,255,255,0.15)]">
           <div className="text-cyan-400 text-xs mb-4">● PROPIEDAD TOKENIZADA</div>
 
           <div className="flex gap-4">
@@ -176,30 +176,41 @@ export default function TerrixLanding() {
     </div>
 
     <h2 className="text-4xl md:text-6xl font-bold mt-4">
-      Propiedades Tokenizadas
+      Propiedades Tokenizadas en Argentina
     </h2>
 
   </div>
 
-  <div className="grid md:grid-cols-3 gap-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
     {propiedades.map((propiedad) => (
 
       <div
         key={propiedad.id}
         className="
-        bg-[#111]
-        rounded-3xl
-        overflow-hidden
-        border border-white/10
-        hover:scale-105
-        transition"
+bg-[#0a0a0a]
+rounded-3xl
+overflow-hidden
+border border-white/10
+hover:border-cyan-400/50
+hover:-translate-y-2
+transition-all
+duration-300
+shadow-[0_0_30px_rgba(0,255,255,0.05)]
+"
       >
 
-        <img
-          src={propiedad.imagen}
-          className="h-[300px] w-full object-cover"
-        />
+        <div className="bg-[#050505] p-4 flex justify-center items-center h-[420px]">
+
+  <div className="bg-black flex items-center justify-center p-4">
+  <img
+    src={propiedad.imagen}
+    className="h-[350px] w-auto object-contain"
+    alt={propiedad.nombre}
+  />
+</div>
+
+</div>
 
         <div className="p-6">
 

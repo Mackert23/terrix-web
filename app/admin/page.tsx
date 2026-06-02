@@ -33,6 +33,7 @@ export default function AdminPage() {
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [categoria, setCategoria] = useState("LOTE");
 
   const [archivo, setArchivo] = useState<File | null>(null);
 
@@ -63,15 +64,16 @@ export default function AdminPage() {
       .data.publicUrl;
 
     const { error } = await supabase
-      .from("propiedades")
-      .insert([
-        {
-          nombre,
-          precio,
-          imagen,
-          descripcion,
-        },
-      ]);
+  .from("propiedades")
+  .insert([
+    {
+      nombre,
+      precio,
+      imagen,
+      descripcion,
+      categoria,
+    },
+  ]);
 
     if (error) {
       alert("Error");
@@ -110,6 +112,17 @@ export default function AdminPage() {
           onChange={(e) => setPrecio(e.target.value)}
           className="bg-[#111] p-5 rounded-xl"
         />
+
+        <select
+  value={categoria}
+  onChange={(e) => setCategoria(e.target.value)}
+  className="bg-[#111] p-5 rounded-xl"
+>
+  <option value="LOTE">LOTE</option>
+  <option value="CASA">CASA</option>
+  <option value="DEPARTAMENTO">DEPARTAMENTO</option>
+  <option value="CAMPO">CAMPO</option>
+</select>
 
         <input
           type="file"
