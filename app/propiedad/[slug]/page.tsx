@@ -1,96 +1,86 @@
-"use client";
+import { supabase } from "@/lib/supabase";
 
-import { use } from "react";
-
-type Props = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-export default function PropertyPage({
+export default async function PropiedadPage({
   params,
-}: Props) {
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-  const { slug } = use(params);
-
-  const propiedades = {
-    "villa-dubai": {
-      nombre: "Villa Dubai",
-      precio: "450.000 USDT",
-      imagen: "/estate1.jpg",
-      descripcion:
-        "Villa de lujo tokenizada en Dubai con vista al mar.",
-    },
-
-    "miami-mansion": {
-      nombre: "Miami Mansion",
-      precio: "820.000 USDT",
-      imagen: "/estate2.jpg",
-      descripcion:
-        "Mansión premium ubicada frente a la playa de Miami.",
-    },
-
-    "penthouse-ba": {
-      nombre: "Penthouse BA",
-      precio: "210.000 USDT",
-      imagen: "/estate3.jpg",
-      descripcion:
-        "Penthouse exclusivo en Buenos Aires.",
-    },
-  };
-
-  const propiedad =
-    propiedades[slug as keyof typeof propiedades];
+  const { data: propiedad } = await supabase
+    .from("propiedades")
+    .select("*")
+    .eq("slug", slug)
+    .single();
 
   if (!propiedad) {
     return (
-      <main className="min-h-screen bg-black text-white p-10">
-        Propiedad no encontrada
+      <main className="bg-black text-white min-h-screen flex items-center justify-center">
+        <h1 className="text-4xl font-bold">
+          Propiedad no encontrada
+        </h1>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-black text-white p-10">
+    <main className="bg-black text-white min-h-screen">
 
-      <img
-        src={propiedad.imagen}
-        className="rounded-3xl w-full max-w-5xl"
-      />
+      <div className="max-w-7xl mx-auto px-8 py-20">
 
-      <h1 className="text-6xl font-bold mt-8">
-        {propiedad.nombre}
-      </h1>
+        <div className="grid md:grid-cols-2 gap-12">
 
-      <div className="text-cyan-400 text-3xl mt-4">
-        {propiedad.precio}
+          <div className="bg-[#0a0a0a] rounded-3xl border border-white/10 p-8">
+            <img
+              src={propiedad.imagen}
+              alt={propiedad.nombre}
+              className="w-full rounded-2xl object-contain"
+            />
+          </div>
+
+          <div>
+
+            <div className="text-cyan-400 tracking-[.3em]">
+              {propiedad.slug}
+            </div>
+
+            <h1 className="text-5xl font-bold mt-4">
+              {propiedad.nombre}
+            </h1>
+
+            <div className="text-3xl mt-6 font-bold">
+              {propiedad.precio} USDT
+            </div>
+
+            <p className="text-white/60 mt-8 leading-8">
+              {propiedad.descripcion}
+            </p>
+
+            <a
+  href="https://opensea.io/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="
+  inline-block
+  mt-10
+  bg-cyan-500
+  text-black
+  px-10
+  py-5
+  rounded-2xl
+  font-bold
+  hover:scale-105
+  transition
+  "
+>
+  COMPRAR NFT
+</a>
+
+          </div>
+
+        </div>
+
       </div>
-
-      <p className="text-white/60 mt-6 max-w-2xl">
-        {propiedad.descripcion}
-      </p>
-
-      <button
-        onClick={() => {
-
-          const wallet =
-            (window as any).ethereum?.selectedAddress;
-
-          if (!wallet) {
-            alert("Conectá una wallet");
-            return;
-          }
-
-          alert(
-            `NFT reservado por: ${wallet}`
-          );
-
-        }}
-        className="mt-10 bg-cyan-500 text-black px-8 py-4 rounded-xl font-bold hover:scale-105 transition"
-      >
-        COMPRAR NFT
-      </button>
 
     </main>
   );

@@ -183,58 +183,60 @@ export default function TerrixLanding() {
 
   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
-    {propiedades.map((propiedad) => (
+{propiedades.map((propiedad) => (
 
-      <div
-        key={propiedad.id}
-        className="
-bg-[#0a0a0a]
-rounded-3xl
-overflow-hidden
-border border-white/10
-hover:border-cyan-400/50
-hover:-translate-y-2
-transition-all
-duration-300
-shadow-[0_0_30px_rgba(0,255,255,0.05)]
-"
-      >
+  <Link
+    href={`/propiedad/${propiedad.slug}`}
+    key={propiedad.id}
+  >
+    <div
+      className="
+      bg-[#0a0a0a]
+      rounded-3xl
+      overflow-hidden
+      border border-white/10
+      hover:border-cyan-400/50
+      hover:-translate-y-2
+      transition-all
+      duration-300
+      shadow-[0_0_30px_rgba(0,255,255,0.05)]
+      "
+    >
 
-        <div className="bg-[#050505] p-4 flex justify-center items-center h-[420px]">
-
-  <div className="bg-black flex items-center justify-center p-4">
-  <img
-    src={propiedad.imagen}
-    className="h-[350px] w-auto object-contain"
-    alt={propiedad.nombre}
-  />
-</div>
-
-</div>
-
-        <div className="p-6">
-
-          <div className="text-cyan-400">
-            NFT #{propiedad.id}
-          </div>
-
-          <h3 className="text-2xl font-bold mt-2">
-            {propiedad.nombre}
-          </h3>
-
-          <p className="text-white/60 mt-2">
-            {propiedad.precio} USDT
-          </p>
-
-          <p className="text-white/50 mt-4">
-            {propiedad.descripcion}
-          </p>
-
+      <div className="bg-[#050505] p-4 flex justify-center items-center h-[420px]">
+        <div className="bg-black flex items-center justify-center p-4 w-full h-full">
+          <img
+            src={propiedad.imagen}
+            className="max-h-full max-w-full object-contain"
+            alt={propiedad.nombre}
+          />
         </div>
+      </div>
+
+      <div className="p-6">
+
+        <div className="text-cyan-400">
+          {propiedad.slug}
+        </div>
+
+        <h3 className="text-2xl font-bold mt-2">
+          {propiedad.nombre}
+        </h3>
+
+        <p className="text-white/60 mt-2">
+          {propiedad.precio} USDT
+        </p>
+
+        <p className="text-white/50 mt-4">
+          {propiedad.descripcion}
+        </p>
 
       </div>
 
-    ))}
+    </div>
+  </Link>
+
+))}
 
   </div>
 
