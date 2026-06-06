@@ -147,7 +147,8 @@ export default function TerrixLanding() {
 
         {/* WALLET BLOCK */}
 {mounted && isConnected && (
-  <div className="absolute bottom-6 right-6 z-30 bg-black/40 backdrop-blur-xl border border-white/10 p-5 rounded-2xl">
+  <div className="absolute bottom-6 right-6 z-30 bg-black/40 backdrop-blur-xl border border-white/10 p-5 rounded-2xl w-[320px]">
+
     <div className="text-cyan-400 text-sm">
       WALLET CONECTADA
     </div>
@@ -159,6 +160,25 @@ export default function TerrixLanding() {
     <div className="mt-2 text-white/60 break-all text-sm">
       {address}
     </div>
+
+    <Link
+      href="/registro"
+      className="
+      mt-5
+      block
+      text-center
+      bg-cyan-500
+      hover:bg-cyan-400
+      text-black
+      font-bold
+      py-3
+      rounded-xl
+      transition
+      "
+    >
+      COMPLETAR KYC
+    </Link>
+
   </div>
 )}
       </section>
