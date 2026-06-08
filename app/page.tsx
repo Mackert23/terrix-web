@@ -53,35 +53,67 @@ export default function TerrixLanding() {
         </div>
 
         {/* NAVBAR */}
-        <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/20 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
 
-          <div className="flex items-center gap-3">
-            <img src="/icono.png" className="w-8 md:w-10" />
-            <span className="font-bold text-xl md:text-3xl">TERRIX</span>
-          </div>
+        
+       <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/20 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
 
-          <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
-            <button>MENÚ</button>
+  <div className="flex items-center gap-3">
+    <img src="/icono.png" className="w-8 md:w-10" />
+    <span className="font-bold text-xl md:text-3xl">
+      TERRIX
+    </span>
+  </div>
 
-            <button
-              onClick={() =>
-                document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              SOBRE NOSOTROS
-            </button>
+  <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
+    <button>MENÚ</button>
 
-            <button
-              onClick={() =>
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              CONTACTO
-            </button>
-          </div>
+    <button
+  onClick={() =>
+    document.getElementById("about")?.scrollIntoView({
+      behavior: "smooth",
+    })
+  }
+>
+  SOBRE NOSOTROS
+</button>
 
-          {mounted && <ConnectButton />}
-        </nav>
+<button
+  onClick={() =>
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+    })
+  }
+>
+  CONTACTO
+</button>
+  </div>
+
+  <div className="flex items-center gap-4">
+
+    <Link
+      href="/dashboard"
+      className="
+      px-5
+      py-2
+      rounded-xl
+      border
+      border-cyan-500/40
+      bg-cyan-500/10
+      text-cyan-400
+      font-bold
+      hover:bg-cyan-500
+      hover:text-black
+      transition
+      "
+    >
+      Dashboard
+    </Link>
+
+    {mounted && <ConnectButton />}
+
+  </div>
+
+</nav>
 
         {/* TERRIX TITLE */}
         <div className="absolute inset-0 flex justify-center top-20 pointer-events-none">
@@ -263,6 +295,149 @@ export default function TerrixLanding() {
 </section>
 
 {/* ABOUT */}
+
+<section
+  id="about"
+  className="py-32 px-8 md:px-12 bg-[#050505]"
+>
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-cyan-400 tracking-[.4em]">
+      SOBRE TERRIX
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+      Transformando el mercado inmobiliario con Blockchain
+    </h2>
+
+    <p className="text-white/60 mt-8 max-w-4xl text-lg leading-9">
+      TERRIX es una plataforma Web3 que permite comprar propiedades
+      utilizando criptomonedas y representarlas mediante NFTs certificados.
+
+      Nuestro objetivo es eliminar barreras geográficas, reducir
+      intermediarios y crear un mercado inmobiliario más transparente,
+      rápido y global.
+    </p>
+
+    <div className="grid md:grid-cols-3 gap-8 mt-20">
+
+      <div className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div className="text-5xl mb-4">🌎</div>
+
+        <h3 className="text-2xl font-bold">
+          Alcance Global
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Compra propiedades desde cualquier parte del mundo utilizando blockchain.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div className="text-5xl mb-4">🔒</div>
+
+        <h3 className="text-2xl font-bold">
+          Transparencia
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Todas las operaciones quedan registradas y verificadas en blockchain.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+        <div className="text-5xl mb-4">🏡</div>
+
+        <h3 className="text-2xl font-bold">
+          NFTs Certificados
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Cada propiedad puede estar representada mediante un NFT único.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+<section className="py-32 px-8 md:px-12 bg-[#050505]">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-cyan-400 tracking-[.4em]">
+      ROADMAP
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+      El futuro de TERRIX
+    </h2>
+
+    <p className="text-white/60 mt-6 max-w-3xl text-lg">
+      Estamos construyendo el ecosistema inmobiliario Web3 más accesible
+      de Latinoamérica.
+    </p>
+
+    <div className="mt-20 space-y-8">
+
+      <div className="bg-[#0a0a0a] border border-cyan-500/20 rounded-3xl p-8">
+        <div className="text-cyan-400 font-bold text-xl">
+          FASE 1 · MVP
+        </div>
+
+        <ul className="mt-4 space-y-2 text-white/70">
+          <li>✓ Landing Web</li>
+          <li>✓ Dashboard de usuario</li>
+          <li>✓ Sistema KYC</li>
+          <li>✓ Marketplace inicial</li>
+        </ul>
+      </div>
+
+      <div className="bg-[#0a0a0a] border border-cyan-500/20 rounded-3xl p-8">
+        <div className="text-cyan-400 font-bold text-xl">
+          FASE 2 · Blockchain
+        </div>
+
+        <ul className="mt-4 space-y-2 text-white/70">
+          <li>• Smart Contracts</li>
+          <li>• NFTs certificados</li>
+          <li>• Integración OpenSea</li>
+          <li>• Wallet Investor Dashboard</li>
+        </ul>
+      </div>
+
+      <div className="bg-[#0a0a0a] border border-cyan-500/20 rounded-3xl p-8">
+        <div className="text-cyan-400 font-bold text-xl">
+          FASE 3 · Expansión
+        </div>
+
+        <ul className="mt-4 space-y-2 text-white/70">
+          <li>• Alianzas inmobiliarias</li>
+          <li>• Propiedades internacionales</li>
+          <li>• Tokenización masiva</li>
+          <li>• Comunidad VIP</li>
+        </ul>
+      </div>
+
+      <div className="bg-[#0a0a0a] border border-cyan-500/20 rounded-3xl p-8">
+        <div className="text-cyan-400 font-bold text-xl">
+          FASE 4 · Ecosistema Global
+        </div>
+
+        <ul className="mt-4 space-y-2 text-white/70">
+          <li>• Marketplace global</li>
+          <li>• Financiamiento Web3</li>
+          <li>• DAO inmobiliaria</li>
+          <li>• Expansión internacional</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+</section>
 
       {/* CONTACTO */}
       <section id="contact" className="py-32 px-8 md:px-10">

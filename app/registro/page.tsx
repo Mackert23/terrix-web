@@ -1,7 +1,14 @@
 "use client";
+
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useAccount } from "wagmi";
+
 export default function RegistroPage() {
+
+  const { address } = useAccount();
+
+  console.log("Wallet:", address);
 
   const [dniFrente, setDniFrente] =
   useState<File | null>(null);
@@ -12,8 +19,16 @@ const [dniDorso, setDniDorso] =
 const [selfie, setSelfie] =
   useState<File | null>(null);
 
-async function enviarKYC() {
+  const [nombre, setNombre] = useState("");
+const [apellido, setApellido] = useState("");
+const [email, setEmail] = useState("");
+const [direccion, setDireccion] = useState("");
 
+async function enviarKYC() {
+  if (!address) {
+  alert("Debes conectar una wallet");
+  return;
+}
   if (!dniFrente || !dniDorso || !selfie) {
     alert("Debes subir todos los documentos");
     return;
@@ -63,10 +78,43 @@ if (errorFrente) {
       );
 
   if (errorSelfie) {
-    alert("Error subiendo Selfie");
-    console.log(errorSelfie);
-    return;
-  }
+  alert("Error subiendo Selfie");
+  console.log(errorSelfie);
+  return;
+}
+console.log("Voy a guardar en kyc_requests");
+const { error: errorDB } =
+  await supabase
+  .from("kyc_requests")
+  .insert([
+    {
+      nombre,
+      apellido,
+      email,
+      direccion,
+
+      wallet: address,
+
+      dni_frente: `${timestamp}-frente-${dniFrente.name}`,
+      dni_dorso: `${timestamp}-dorso-${dniDorso.name}`,
+      selfie: `${timestamp}-selfie-${selfie.name}`,
+
+      estado: "pendiente",
+    },
+  ]);
+
+if (errorDB) {
+  console.log("ERROR DB:", errorDB);
+
+  alert(
+    errorDB.message ||
+    JSON.stringify(errorDB)
+  );
+
+  return;
+}
+
+
 setDniFrente(null);
 setDniDorso(null);
 setSelfie(null);
@@ -109,24 +157,32 @@ setSelfie(null);
         <div className="grid md:grid-cols-2 gap-6">
 
           <input
-            placeholder="Nombre"
-            className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
-          />
+  placeholder="Nombre"
+  value={nombre}
+  onChange={(e) => setNombre(e.target.value)}
+  className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
+/>
 
           <input
-            placeholder="Apellido"
-            className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
-          />
+  placeholder="Apellido"
+  value={apellido}
+  onChange={(e) => setApellido(e.target.value)}
+  className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
+/>
 
           <input
-            placeholder="Email"
-            className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
-          />
+  placeholder="Email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
+/>
 
-          <input
-            placeholder="Dirección"
-            className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
-          />
+        <input
+  placeholder="Domicilio"
+  value={direccion}
+  onChange={(e) => setDireccion(e.target.value)}
+  className="bg-[#111] border border-white/10 rounded-2xl p-5 outline-none focus:border-cyan-500"
+/>
 
         </div>
 
