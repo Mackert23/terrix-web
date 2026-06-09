@@ -10,12 +10,58 @@ export default function TerrixLanding() {
 
   const [mounted, setMounted] = useState(false);
   const [propiedades, setPropiedades] = useState<any[]>([]);
+  const [kycAprobado, setKycAprobado] = useState(false);
+  const [loadingKyc, setLoadingKyc] = useState(true);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
+
+  async function verificarKYC() {
+
+    if (!address) {
+      setLoadingKyc(false);
+      return;
+    }
+
+    const { data, error } = await supabase
+  .from("kyc_requests")
+  .select("estado, wallet")
+  .eq("wallet", address);
+
+console.log("KYC:", data);
+console.log("ERROR:", error);
+
+if (
+  data &&
+  data.some((item) => item.estado === "aprobado")
+) {
+  setKycAprobado(true);
+}
+
+    setLoadingKyc(false);
+  }
+
+  verificarKYC();
+
+}, [address]);
+
+<div className="text-yellow-400 text-xs mt-2">
+  KYC: {kycAprobado ? "APROBADO" : "NO APROBADO"}
+</div>
+
+useEffect(() => {
+
+
+
+
+
+
+
+
+
 
   async function cargarPropiedades() {
 
@@ -55,64 +101,98 @@ export default function TerrixLanding() {
         {/* NAVBAR */}
 
         
-       <nav className="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] z-50 rounded-3xl backdrop-blur-xl bg-slate-900/20 border border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
-
-  <div className="flex items-center gap-3">
-    <img src="/icono.png" className="w-8 md:w-10" />
-    <span className="font-bold text-xl md:text-3xl">
-      TERRIX
-    </span>
-  </div>
-
-  <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
-    <button>MENÚ</button>
-
-    <button
-  onClick={() =>
-    document.getElementById("about")?.scrollIntoView({
-      behavior: "smooth",
-    })
-  }
+       <nav
+  className="
+  absolute
+  top-4
+  left-1/2
+  -translate-x-1/2
+  w-[95%]
+  z-50
+  rounded-3xl
+  backdrop-blur-xl
+  bg-slate-900/20
+  border
+  border-white/10
+  px-4
+  py-4
+  "
 >
-  SOBRE NOSOTROS
-</button>
+  <div
+    className="
+    flex
+    flex-col
+    md:flex-row
+    items-center
+    justify-between
+    gap-4
+    "
+  >
+    {/* LOGO */}
+    <div className="flex items-center gap-3">
+      <img
+        src="/icono.png"
+        alt="Terrix"
+        className="w-10 h-10 object-contain"
+      />
 
-<button
-  onClick={() =>
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: "smooth",
-    })
-  }
->
-  CONTACTO
-</button>
+      <span className="font-bold text-2xl md:text-3xl">
+        TERRIX
+      </span>
+    </div>
+
+    {/* MENÚ DESKTOP */}
+    <div className="hidden md:flex gap-10 tracking-[.25em] text-sm">
+      <button>MENÚ</button>
+
+      <button
+        onClick={() =>
+          document
+            .getElementById("about")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        SOBRE NOSOTROS
+      </button>
+
+      <button
+        onClick={() =>
+          document
+            .getElementById("contact")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        CONTACTO
+      </button>
+    </div>
+
+    {/* BOTONES */}
+    <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+
+      <Link
+        href="/dashboard"
+        className="
+        w-full
+        md:w-auto
+        text-center
+        px-6
+        py-3
+        rounded-xl
+        border
+        border-cyan-500/40
+        text-cyan-400
+        font-bold
+        "
+      >
+        Dashboard
+      </Link>
+
+      <div className="w-full md:w-auto flex justify-center">
+        <ConnectButton />
+      </div>
+
+    </div>
   </div>
-
-  <div className="flex items-center gap-4">
-
-    <Link
-      href="/dashboard"
-      className="
-      px-5
-      py-2
-      rounded-xl
-      border
-      border-cyan-500/40
-      bg-cyan-500/10
-      text-cyan-400
-      font-bold
-      hover:bg-cyan-500
-      hover:text-black
-      transition
-      "
-    >
-      Dashboard
-    </Link>
-
-    {mounted && <ConnectButton />}
-
-  </div>
-
 </nav>
 
         {/* TERRIX TITLE */}
@@ -193,23 +273,43 @@ export default function TerrixLanding() {
       {address}
     </div>
 
-    <Link
-      href="/registro"
-      className="
-      mt-5
-      block
-      text-center
-      bg-cyan-500
-      hover:bg-cyan-400
-      text-black
-      font-bold
-      py-3
-      rounded-xl
-      transition
-      "
-    >
-      COMPLETAR KYC
-    </Link>
+    {!loadingKyc && !kycAprobado && (
+  <Link
+    href="/registro"
+    className="
+    mt-5
+    block
+    text-center
+    bg-cyan-500
+    hover:bg-cyan-400
+    text-black
+    font-bold
+    py-3
+    rounded-xl
+    transition
+    "
+  >
+    COMPLETAR KYC
+  </Link>
+)}
+
+{!loadingKyc && kycAprobado && (
+  <div
+    className="
+    mt-5
+    text-center
+    bg-green-500/20
+    border
+    border-green-500/40
+    text-green-400
+    font-bold
+    py-3
+    rounded-xl
+    "
+  >
+    ✅ KYC VERIFICADO
+  </div>
+)}
 
   </div>
 )}
@@ -299,7 +399,8 @@ export default function TerrixLanding() {
 <section
   id="about"
   className="py-32 px-8 md:px-12 bg-[#050505]"
->
+></section>
+
 
   <div className="max-w-7xl mx-auto">
 
@@ -310,7 +411,45 @@ export default function TerrixLanding() {
     <h2 className="text-4xl md:text-6xl font-bold mt-4">
       Transformando el mercado inmobiliario con Blockchain
     </h2>
+<div className="grid md:grid-cols-4 gap-6 mt-16">
 
+  <div className="bg-[#0a0a0a] p-6 rounded-3xl">
+    <div className="text-4xl font-bold text-cyan-400">
+      Web3
+    </div>
+    <div className="text-white/60 mt-2">
+      Infraestructura Blockchain
+    </div>
+  </div>
+
+  <div className="bg-[#0a0a0a] p-6 rounded-3xl">
+    <div className="text-4xl font-bold text-cyan-400">
+      NFTs
+    </div>
+    <div className="text-white/60 mt-2">
+      Certificados Digitales
+    </div>
+  </div>
+
+  <div className="bg-[#0a0a0a] p-6 rounded-3xl">
+    <div className="text-4xl font-bold text-cyan-400">
+      KYC
+    </div>
+    <div className="text-white/60 mt-2">
+      Verificación Segura
+    </div>
+  </div>
+
+  <div className="bg-[#0a0a0a] p-6 rounded-3xl">
+    <div className="text-4xl font-bold text-cyan-400">
+      Global
+    </div>
+    <div className="text-white/60 mt-2">
+      Acceso Internacional
+    </div>
+  </div>
+
+</div>
     <p className="text-white/60 mt-8 max-w-4xl text-lg leading-9">
       TERRIX es una plataforma Web3 que permite comprar propiedades
       utilizando criptomonedas y representarlas mediante NFTs certificados.
@@ -361,11 +500,15 @@ export default function TerrixLanding() {
     </div>
 
   </div>
+
+  
 <section className="py-32 px-8 md:px-12 bg-[#050505]">
 
   <div className="max-w-7xl mx-auto">
 
     <div className="text-cyan-400 tracking-[.4em]">
+
+    
       ROADMAP
     </div>
 
@@ -437,7 +580,206 @@ export default function TerrixLanding() {
   </div>
 
 </section>
+
+{/* FAQ */}
+
+<section className="py-32 px-8 md:px-12 bg-[#050505]">
+
+  <div className="max-w-5xl mx-auto">
+
+    <div className="text-cyan-400 tracking-[.4em]">
+      FAQ
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+      Preguntas Frecuentes
+    </h2>
+
+    <div className="mt-16 space-y-6">
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <h3 className="text-2xl font-bold">
+          ¿Qué es TERRIX?
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          TERRIX es una plataforma Web3 enfocada en conectar el mercado inmobiliario con tecnología blockchain.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <h3 className="text-2xl font-bold">
+          ¿Necesito una wallet?
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Sí. Para acceder a funcionalidades Web3 necesitas conectar una wallet compatible como MetaMask.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <h3 className="text-2xl font-bold">
+          ¿Qué es el proceso KYC?
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          El proceso KYC verifica la identidad del usuario para operar de forma segura dentro de la plataforma.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <h3 className="text-2xl font-bold">
+          ¿Puedo comprar propiedades con criptomonedas?
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Ese es uno de los objetivos principales de TERRIX. Actualmente estamos desarrollando la infraestructura necesaria para habilitar este proceso.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
+
+{/* COMO FUNCIONA */}
+
+<section className="py-32 px-8 md:px-12 bg-black">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-cyan-400 tracking-[.4em]">
+      CÓMO FUNCIONA
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+      Compra propiedades con tecnología blockchain
+    </h2>
+
+    <div className="grid md:grid-cols-4 gap-8 mt-20">
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">👛</div>
+        <h3 className="text-2xl font-bold">
+          Conecta tu Wallet
+        </h3>
+        <p className="text-white/60 mt-4">
+          Accede a TERRIX utilizando tu wallet Web3.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">🛡️</div>
+        <h3 className="text-2xl font-bold">
+          Completa KYC
+        </h3>
+        <p className="text-white/60 mt-4">
+          Verificamos tu identidad para operar de forma segura.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">🏡</div>
+        <h3 className="text-2xl font-bold">
+          Explora Propiedades
+        </h3>
+        <p className="text-white/60 mt-4">
+          Descubre oportunidades inmobiliarias tokenizadas.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">🚀</div>
+        <h3 className="text-2xl font-bold">
+          Invierte
+        </h3>
+        <p className="text-white/60 mt-4">
+          Compra utilizando criptomonedas y recibe tu NFT certificado.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* POR QUE TERRIX */}
+
+<section className="py-32 px-8 md:px-12 bg-[#050505]">
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="text-cyan-400 tracking-[.4em]">
+      CONFIANZA Y SEGURIDAD
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+      ¿Por qué confiar en TERRIX?
+    </h2>
+
+    <p className="text-white/60 mt-6 max-w-3xl text-lg">
+      Combinamos tecnología blockchain, verificación de identidad y activos
+      inmobiliarios para construir una experiencia transparente y segura.
+    </p>
+
+    <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mt-20">
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">🔒</div>
+
+        <h3 className="text-2xl font-bold">
+          KYC Verificado
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Todos los usuarios pasan por un proceso de validación de identidad.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">⛓️</div>
+
+        <h3 className="text-2xl font-bold">
+          Blockchain
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Las operaciones quedan registradas en una red pública y auditable.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">🏡</div>
+
+        <h3 className="text-2xl font-bold">
+          Activos Reales
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          El foco de TERRIX son propiedades reales respaldadas por documentación.
+        </p>
+      </div>
+
+      <div className="bg-[#0a0a0a] rounded-3xl p-8 border border-white/10">
+        <div className="text-5xl mb-5">🌍</div>
+
+        <h3 className="text-2xl font-bold">
+          Acceso Global
+        </h3>
+
+        <p className="text-white/60 mt-4">
+          Inversores de cualquier país pueden participar utilizando criptomonedas.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 
       {/* CONTACTO */}
       <section id="contact" className="py-32 px-8 md:px-10">
@@ -460,6 +802,90 @@ export default function TerrixLanding() {
         </form>
       </section>
 
+{/* FOOTER */}
+
+<footer
+  id="contact"
+  className="border-t border-white/10 bg-black px-8 md:px-12 py-20"
+>
+
+  <div className="max-w-7xl mx-auto">
+
+    <div className="grid md:grid-cols-3 gap-12">
+
+      <div>
+
+        <h3 className="text-3xl font-bold">
+          TERRIX
+        </h3>
+
+        <p className="text-white/60 mt-4 leading-8">
+          Tokenized Real Estate.
+          Construyendo el futuro del mercado inmobiliario mediante blockchain y Web3.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4 className="font-bold text-xl">
+          Navegación
+        </h4>
+
+        <div className="flex flex-col gap-3 mt-4 text-white/60">
+
+          <a href="#about">Sobre Nosotros</a>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/registro">KYC</a>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h4 className="font-bold text-xl">
+          Contacto
+        </h4>
+
+        <div className="flex flex-col gap-3 mt-4 text-white/60">
+
+          <span>Buenos Aires, Argentina</span>
+
+          <a
+            href="https://x.com"
+            target="_blank"
+          >
+            X / Twitter
+          </a>
+
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div className="mt-16 pt-8 border-t border-white/10 text-center text-white/40">
+
+      © 2026 TERRIX · All Rights Reserved
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
     </main>
+
+
   );
 }
